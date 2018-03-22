@@ -8,14 +8,6 @@
        This plugin provides hungarian notation inspection .
     ]]></description>
 
-    <change-notes><![CDATA[
-      1.0.2 Android Studio 2.0 Support(Experimental)
-      1.0.1 first release<br>
-    ]]>
-    </change-notes>
-
-    <idea-version since-build="131.000"/>
-
     <extensions defaultExtensionNs="com.intellij">
         <localInspection enabledByDefault="true"
                          groupName="Hungarial" displayName="HungarianField"
