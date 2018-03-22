@@ -6,8 +6,6 @@ import com.intellij.codeInspection.ProblemsHolder;
 import com.intellij.psi.JavaElementVisitor;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.PsiField;
-import com.intellij.psi.PsiModifierList;
-import com.kogitune.inspections.toolbar.ToggleHungarianEnable;
 import org.jetbrains.annotations.NotNull;
 
 public class HungarianFieldInspection extends BaseJavaLocalInspectionTool {
@@ -22,17 +20,13 @@ public class HungarianFieldInspection extends BaseJavaLocalInspectionTool {
             @Override
             public void visitField(PsiField field) {
                 super.visitField(field);
-                if (ToggleHungarianEnable.isHangurianEnabled(holder.getProject())) {
-                    alertIfNotHungarian(holder, field);
-                } else {
-                    alertIfHungarian(holder, field);
-                }
-
+                mAlertIfHungarian(holder, field);
+                m_mAlertIfHungarian(holder, field);
             }
         };
     }
 
-    private void alertIfHungarian(ProblemsHolder holder, PsiField field) {
+    private void mAlertIfHungarian(ProblemsHolder holder, PsiField field) {
         final String fieldName = field.getName();
         if (fieldName.matches("[ms][A-Z].*")) {
             String newFiledName = fieldName.substring(1, 2).toLowerCase() + fieldName.substring(2, fieldName.length());
@@ -40,16 +34,12 @@ public class HungarianFieldInspection extends BaseJavaLocalInspectionTool {
         }
     }
 
-    private void alertIfNotHungarian(ProblemsHolder holder, PsiField field) {
+    private void m_mAlertIfHungarian(ProblemsHolder holder, PsiField field) {
         final String fieldName = field.getName();
-        if (fieldName.matches("[a-z][a-z].*")) {
-            String prefix = "m";
-            final PsiModifierList modifierList = field.getModifierList();
-            if (modifierList != null && modifierList.hasModifierProperty("static")) {
-                prefix = "s";
-            }
-            String newFiledName = prefix + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1, fieldName.length());
-            holder.registerProblem(field, "Not hungary field name", new RenameElementFix(field, newFiledName));
+        if (fieldName.matches("m_[a-z][A-Z].*")) {
+            String newFiledName = fieldName.substring(3, 4).toLowerCase() + fieldName.substring(4, fieldName.length());
+            holder.registerProblem(field, "Hungary field name", new RenameElementFix(field, newFiledName));
         }
     }
+
 }
