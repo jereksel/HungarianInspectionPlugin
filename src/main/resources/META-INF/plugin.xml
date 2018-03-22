@@ -1,7 +1,6 @@
 <idea-plugin>
     <id>com.kogitune</id>
     <name>HungarianInspection</name>
-    <version>1.0.2</version>
     <vendor email="takam.dev@gmail.com" url="https://github.com/takahirom/HungarianInspectionPlugin">takahirom</vendor>
 
     <description><![CDATA[

@@ -5,13 +5,14 @@ plugins {
 apply plugin: 'java'
 
 group 'com.kogitune'
-version '1.0.2'
+version '1.0.3'
 
 intellij {
     version '2016.1'
 }
 patchPluginXml {
     changeNotes """
+      1.0.3 Remove option to convert to hungarian. Add more hungarian notation types
       1.0.2 Android Studio 2.0 Support(Experimental)
       1.0.1 first release<br>"""
 }
