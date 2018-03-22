@@ -28,6 +28,9 @@ public class HungarianFieldInspection extends BaseJavaLocalInspectionTool {
 
     private void mAlertIfHungarian(ProblemsHolder holder, PsiField field) {
         final String fieldName = field.getName();
+        if (fieldName == null) {
+            return;
+        }
         if (fieldName.matches("[ms][A-Z].*")) {
             String newFiledName = fieldName.substring(1, 2).toLowerCase() + fieldName.substring(2, fieldName.length());
             holder.registerProblem(field, "Hungary field name", new RenameElementFix(field, newFiledName));
@@ -36,6 +39,9 @@ public class HungarianFieldInspection extends BaseJavaLocalInspectionTool {
 
     private void m_mAlertIfHungarian(ProblemsHolder holder, PsiField field) {
         final String fieldName = field.getName();
+        if (fieldName == null) {
+            return;
+        }
         if (fieldName.matches("m_[a-z][A-Z].*")) {
             String newFiledName = fieldName.substring(3, 4).toLowerCase() + fieldName.substring(4, fieldName.length());
             holder.registerProblem(field, "Hungary field name", new RenameElementFix(field, newFiledName));
