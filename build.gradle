@@ -15,4 +15,6 @@ patchPluginXml {
       1.0.3 Remove option to convert to hungarian. Add more hungarian notation types
       1.0.2 Android Studio 2.0 Support(Experimental)
       1.0.1 first release<br>"""
+
+    untilBuild "173.*"
 }
